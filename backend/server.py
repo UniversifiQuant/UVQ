@@ -309,7 +309,8 @@ async def root():
 @api_router.get("/bitcoin/current", response_model=BitcoinData)
 async def get_current_bitcoin_data():
     """Get current Bitcoin market data"""
-    async with BitcoinDataCollector() as collector:
+    collector = BitcoinDataCollector()
+    async with collector:
         return await collector.get_bitcoin_data()
 
 @api_router.post("/scenarios", response_model=PaymentScenario)
