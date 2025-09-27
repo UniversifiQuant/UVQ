@@ -337,7 +337,8 @@ async def analyze_scenario(scenario_id: str):
     scenario = PaymentScenario(**scenario_doc)
     
     # Get current Bitcoin data
-    async with BitcoinDataCollector() as collector:
+    collector = BitcoinDataCollector()
+    async with collector:
         current_data = await collector.get_bitcoin_data()
     
     # Generate AI-powered recommendation
