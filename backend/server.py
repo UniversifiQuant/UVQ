@@ -364,7 +364,8 @@ async def get_market_analysis(request: AIAnalysisRequest):
 @api_router.get("/dashboard/summary")
 async def get_dashboard_summary():
     """Get summary data for dashboard"""
-    async with BitcoinDataCollector() as collector:
+    collector = BitcoinDataCollector()
+    async with collector:
         bitcoin_data = await collector.get_bitcoin_data()
     
     # Get scenario counts
